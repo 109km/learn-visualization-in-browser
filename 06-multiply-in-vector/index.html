@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinate system in canvas</title>
+</head>
+
+<body>
+  <canvas id="canvas1" width="512" height="256"></canvas>
+  <script src="../common/libs/rough.js"></script>
+  <script src="../common/vector2D.js"></script>
+  <script>
+    const canvas = document.querySelector('#canvas1');
+    const rc = rough.canvas(canvas);
+    const ctx = rc.ctx;
+    ctx.translate(0, canvas.height);
+    ctx.scale(1, -1);
+
+    const pointA = {
+      x: 150,
+      y: 150
+    };
+    const linePoint1 = {
+      x: 80,
+      y: 100
+    };
+    const linePoint2 = {
+      x: 100,
+      y: 50
+    };
+
+    rc.circle(pointA.x, pointA.y, 4, {
+      strokeWidth: 1,
+      fill: 'rgba(0,0, 0, 1)',
+      fillStyle: 'solid',
+    });
+
+    rc.line(linePoint1.x, linePoint1.y, linePoint2.x, linePoint2.y);
+
+    function calculateDistancePointToLine(point, linePointA, linePointB) {
+      const v1 = new Vector2D(linePointA.x - point.x, linePointA.y - point.y);
+      const v2 = new Vector2D(linePointA.x - linePointB.x, linePointA.y - linePointB.y);
+
+      let slopeEdge = 0;
+
+      console.log(v1, v2);
+
+    }
+
+    calculateDistancePointToLine(pointA, linePoint1, linePoint2);
+
+  </script>
+</body>
+
+</html>
